@@ -52,14 +52,6 @@
 </section>
 
 <section id="tickets-section">
-<h1>Create New Ticket</h1>
-<form  action="/flights/<%= flight.id%>/tickets" method="POST">
-    <label for="seat">Seat:</label>
-    <input type="text" name="seat" pattern="[A-F][1-9]\d?" required>
-    <label for="price">Price:</label>
-    <input type="number" name="price" min="0" required>
-    <button type="submit">Create Ticket</button>
-</form>
 
 <h2 class="section-title">Tickets</h2>
 <ul class="ticket-list">
@@ -69,6 +61,7 @@
         </li>
     <% }) %>
 </ul>
+<a href="/flights/<%= flight._id %>/tickets/new"><button type="submit">Add Ticket</button></a>
 </section>
 </div>
 

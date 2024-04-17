@@ -15,6 +15,9 @@ async function show(req, res) {
 }
 
 async function create(req, res) {
+    for (const key in req.body) {
+        if (req.body[key] === '') delete req.body[key];
+      }
     try {
         await Flight.create(req.body);
         // Always redirect after CUDing data
