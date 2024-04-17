@@ -9,7 +9,9 @@
   </section>
   
   <!-- DESTINATIONS FORM -->
-  <br><br><h2>Destination</h2>
+<div id="main-container"></div>
+<section id="destinations-section">
+  <br><br><h2 class="section-title">Destination</h2>
   <form id="add-destination-form" method="POST"
     action="/flights/<%= flight._id %>/destinations">
     <label>Airport:
@@ -23,14 +25,14 @@
         </select>
         </label><br>
         <Label>Arrival:
-            <input type="date" name="arrival">
+            <input type="datetime-local" name="arrival">
         </Label><br>
         <button type="submit">Add Destination</button>
 </form>
 <!-- FLIGHT DETAILS -->
 
 <% if (flight.destinations.length) { %>
-    <table>
+    <table id="destinations-table">
         <thead>
             <tr>
                 <th>Airport</th>
@@ -46,7 +48,28 @@
             <% }) %>
         </tbody>
     </table>
-
 <% } %>
+</section>
+
+<section id="tickets-section">
+<h1>Create New Ticket</h1>
+<form  action="/flights/<%= flight.id%>/tickets" method="POST">
+    <label for="seat">Seat:</label>
+    <input type="text" name="seat" pattern="[A-F][1-9]\d?" required>
+    <label for="price">Price:</label>
+    <input type="number" name="price" min="0" required>
+    <button type="submit">Create Ticket</button>
+</form>
+
+<h2 class="section-title">Tickets</h2>
+<ul class="ticket-list">
+    <% tickets.forEach(ticket => { %>
+        <li class="ticket-item">
+            Seat: <%= ticket.seat %>, Price: <%= ticket.price %>
+        </li>
+    <% }) %>
+</ul>
+</section>
+</div>
 
 <%- include('../partials/footer') %>
